@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<div class="container py-5">
+    <div class="container py-5">
+        <h1>Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="container py-5">
+        <div class="form-group">
+        <label for="G-Sheet-id">Google Sheet ID</label>
+        <input type="text" class="form-control" id="G-Sheet-id" placeholder="Google Sheet ID">
+        <button type="button" class="btn btn-primary" name="upload-sheet-link" id="upload-sheet-link"
+                onclick="setGetParameter(2)">Download Employee From Google sheet(Link)
+        </button>
+        <button type="button" class="btn btn-primary" name="upload-sheet-api" id="upload-sheet-api"
+                onclick="setGetParameter(1)">Download Employee From Google sheet(API)
+        </button>
+        </div>
+    </div>
+</div>
+<script>
+  function setGetParameter(type){
+      sheet_id = document.getElementById('G-Sheet-id').value;
+      console.log(sheet_id)
+      if(type === 1){
+          location.href = `/upload_sheet_api/${sheet_id}` ;
+      }
+      else{
+          location.href = `/upload_sheet_link/${sheet_id}` ;
+      }
+
+  }
+
+</script>
+
+{% endblock %}

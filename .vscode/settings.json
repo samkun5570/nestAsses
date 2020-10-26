@@ -1,0 +1,14 @@
+{
+    "python.pythonPath": "c:\\Users\\sam\\Desktop\\nextAssesment\\env\\Scripts\\python.exe",
+    "python.formatting.provider": "black",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:nextAssesment}/next_assesment_django/db.sqlite3",
+            "name": "nextSqlConnect",
+            "group": "nextSqlConnectGrp"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
