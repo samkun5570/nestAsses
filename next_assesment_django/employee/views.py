@@ -96,11 +96,12 @@ def upload_sheet_link(request, id=None):
         except Exception:
             messages.error(request, "Not able to fetch please check id")
             return redirect("employee")
+        try:
             for record in records:
                 emp = Employee(firstName=record["First Name"], lastName=record["Last Name"],
                                employeeId=record["Employee ID"], city=record["City"])
                 emp.save()
-                messages.success(request, f"Data fetched sucessfully for{emp.employeeId} from Google Sheet")
+            messages.success(request, f"Data fetched sucessfully for{emp.employeeId} from Google Sheet")
         except Exception:
             messages.error(request,"Exception data not valid or data already present")
             return redirect("employee")
@@ -170,6 +171,7 @@ def upload_sheet_api(request, id=None):
                     emp.save()
             except Exception:
                 messages.error(request,"Data already present or data not valid")
+            return redirect("employee")
             messages.success(request,"Data fetched")
             return redirect("employee")
     else:
